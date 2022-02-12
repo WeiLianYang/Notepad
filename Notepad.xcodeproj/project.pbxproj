@@ -17,6 +17,7 @@
 		687362D527B152D9003D1D8B /* NotepadTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687362D427B152D9003D1D8B /* NotepadTests.swift */; };
 		687362DF27B152D9003D1D8B /* NotepadUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687362DE27B152D9003D1D8B /* NotepadUITests.swift */; };
 		687362E127B152D9003D1D8B /* NotepadUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687362E027B152D9003D1D8B /* NotepadUITestsLaunchTests.swift */; };
+		68CEA51D27B7EB1900A9A970 /* GroupListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68CEA51C27B7EB1900A9A970 /* GroupListView.swift */; };
 		A49AD128EC08CF755832F589 /* Pods_Notepad.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C9BCFFA3E3093055733D5A5 /* Pods_Notepad.framework */; };
 /* End PBXBuildFile section */
 
@@ -52,6 +53,7 @@
 		687362DA27B152D9003D1D8B /* NotepadUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NotepadUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		687362DE27B152D9003D1D8B /* NotepadUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotepadUITests.swift; sourceTree = "<group>"; };
 		687362E027B152D9003D1D8B /* NotepadUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotepadUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		68CEA51C27B7EB1900A9A970 /* GroupListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListView.swift; sourceTree = "<group>"; };
 		7AE0D622043143A6FC49D5CD /* Pods-Notepad.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Notepad.debug.xcconfig"; path = "Target Support Files/Pods-Notepad/Pods-Notepad.debug.xcconfig"; sourceTree = "<group>"; };
 		8C9BCFFA3E3093055733D5A5 /* Pods_Notepad.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Notepad.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACEA4DE48D143669DE3BB491 /* Pods-Notepad.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Notepad.release.xcconfig"; path = "Target Support Files/Pods-Notepad/Pods-Notepad.release.xcconfig"; sourceTree = "<group>"; };
@@ -120,6 +122,7 @@
 				687362BA27B152D7003D1D8B /* AppDelegate.swift */,
 				687362BC27B152D7003D1D8B /* SceneDelegate.swift */,
 				687362BE27B152D7003D1D8B /* ViewController.swift */,
+				68CEA51C27B7EB1900A9A970 /* GroupListView.swift */,
 				687362C027B152D7003D1D8B /* Main.storyboard */,
 				687362C627B152D9003D1D8B /* Assets.xcassets */,
 				687362C827B152D9003D1D8B /* LaunchScreen.storyboard */,
@@ -331,6 +334,7 @@
 			files = (
 				687362BF27B152D7003D1D8B /* ViewController.swift in Sources */,
 				687362BB27B152D7003D1D8B /* AppDelegate.swift in Sources */,
+				68CEA51D27B7EB1900A9A970 /* GroupListView.swift in Sources */,
 				687362BD27B152D7003D1D8B /* SceneDelegate.swift in Sources */,
 				687362C527B152D7003D1D8B /* Notepad.xcdatamodeld in Sources */,
 			);
