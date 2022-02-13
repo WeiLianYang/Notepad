@@ -4,4 +4,5 @@ use_frameworks!
 
 target 'Notepad' do
     pod 'SnapKit', '~> 5.0.0'
+    pod 'SQLite.swift', '~> 0.13.2'
 end

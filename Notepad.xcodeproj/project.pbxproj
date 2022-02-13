@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6818980927B93B4400586B67 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6818980827B93B4400586B67 /* DataManager.swift */; };
 		687362BB27B152D7003D1D8B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687362BA27B152D7003D1D8B /* AppDelegate.swift */; };
 		687362BD27B152D7003D1D8B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687362BC27B152D7003D1D8B /* SceneDelegate.swift */; };
 		687362BF27B152D7003D1D8B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687362BE27B152D7003D1D8B /* ViewController.swift */; };
@@ -39,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6818980827B93B4400586B67 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		687362B727B152D7003D1D8B /* Notepad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Notepad.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		687362BA27B152D7003D1D8B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		687362BC27B152D7003D1D8B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 				687362C827B152D9003D1D8B /* LaunchScreen.storyboard */,
 				687362CB27B152D9003D1D8B /* Info.plist */,
 				687362C327B152D7003D1D8B /* Notepad.xcdatamodeld */,
+				6818980827B93B4400586B67 /* DataManager.swift */,
 			);
 			path = Notepad;
 			sourceTree = "<group>";
@@ -333,6 +336,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				687362BF27B152D7003D1D8B /* ViewController.swift in Sources */,
+				6818980927B93B4400586B67 /* DataManager.swift in Sources */,
 				687362BB27B152D7003D1D8B /* AppDelegate.swift in Sources */,
 				68CEA51D27B7EB1900A9A970 /* GroupListView.swift in Sources */,
 				687362BD27B152D7003D1D8B /* SceneDelegate.swift in Sources */,
