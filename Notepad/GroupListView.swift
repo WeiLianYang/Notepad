@@ -58,8 +58,15 @@ class GroupListView: UIScrollView {
         }
     }
     
+    var groupClickDelegate: GroupClickDelegate?
+    
     @objc func onBtnClick(btn: UIButton) {
         print(dataArray![btn.tag])
+        groupClickDelegate?.onGroupClick(title: dataArray![btn.tag])
     }
+    
+}
 
+protocol GroupClickDelegate {
+    func onGroupClick(title: String)
 }

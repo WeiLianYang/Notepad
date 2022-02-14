@@ -7,11 +7,11 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, GroupClickDelegate {
     
     var groupView: GroupListView?
     var groupArray: Array<String> = []
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -20,10 +20,20 @@ class ViewController: UIViewController {
         // 取消导航栏对页面布局的影响
         self.edgesForExtendedLayout = UIRectEdge()
         
-//        self.navigationController?.navigationBar.backgroundColor = UIColor.orange
-        self.navigationController?.navigationBar.barTintColor = UIColor.cyan
+        let image = UIImage()
         
+        if #available(iOS 13.0, *) {
+            let appearance = UINavigationBarAppearance()
+            appearance.backgroundColor = UIColor.cyan
+            appearance.shadowColor = .blue
+            self.navigationItem.standardAppearance = appearance
+            self.navigationItem.scrollEdgeAppearance = self.navigationItem.standardAppearance
+        } else {
+            self.navigationController?.navigationBar.setBackgroundImage(image, for: .default)
+        }
+                
         groupView = GroupListView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height - 30))
+        groupView?.groupClickDelegate = self
         
         self.view.addSubview(groupView!)
         
@@ -69,6 +79,12 @@ class ViewController: UIViewController {
         alertController.addAction(cancelItem)
         alertController.addAction(confirmItem)
         self.present(alertController, animated: true, completion: nil)
+    }
+    
+    func onGroupClick(title: String) {
+        let controller = NoteListViewController()
+        controller.name = title
+        self.navigationController?.pushViewController(controller, animated: true)
     }
                                         
 
