@@ -19,18 +19,6 @@ class ViewController: UIViewController, GroupClickDelegate {
         self.title = "Notepad"
         // 取消导航栏对页面布局的影响
         self.edgesForExtendedLayout = UIRectEdge()
-        
-        let image = UIImage()
-        
-        if #available(iOS 13.0, *) {
-            let appearance = UINavigationBarAppearance()
-            appearance.backgroundColor = UIColor.cyan
-            appearance.shadowColor = .blue
-            self.navigationItem.standardAppearance = appearance
-            self.navigationItem.scrollEdgeAppearance = self.navigationItem.standardAppearance
-        } else {
-            self.navigationController?.navigationBar.setBackgroundImage(image, for: .default)
-        }
                 
         groupView = GroupListView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height - 30))
         groupView?.groupClickDelegate = self
