@@ -16,9 +16,16 @@ class DataManager: NSObject {
     // 数据库打开标识
     static var isDbOpen = false
     
-    static let groupTableName = "group"
+    static let groupTableName = "GroupTable"
     static let groupColumnId = "id"
     static let groupColumnName = "name"
+    
+    static let noteTableName = "NoteTable"
+    static let noteColumnId = "id"
+    static let noteColumnGroup = "group"
+    static let noteColumnBody = "body"
+    static let noteColumnTitle = "title"
+    static let noteColumnTime = "time"
     
     // 保存分组
     static func saveGroup(_ groupName: String) {
@@ -63,6 +70,74 @@ class DataManager: NSObject {
         return array
     }
     
+    // 添加记事
+    static func addNote(note: NoteModel) {
+        if !isDbOpen {
+            self.openDataBase()
+        }
+        // 插入数据
+        let noteTable = Table(noteTableName)
+        let group = Expression<String?>(noteColumnGroup)
+        let body = Expression<String?>(noteColumnBody)
+        let title = Expression<String?>(noteColumnTitle)
+        let time = Expression<String?>(noteColumnTime)
+        
+        let insert = noteTable.insert(group <- note.group, body <- note.body, title <- note.title, time <- note.time)
+        
+        if let rowId = try? sqlHandler?.run(insert) {
+            print("insert note success, rowId: ", rowId)
+        } else {
+            print("insert note failed")
+        }
+    }
+    
+    // 根据分组获取记事
+    class func getNoteByGroupName(groupNameParam: String) -> [NoteModel] {
+        if !isDbOpen {
+            self.openDataBase()
+        }
+        // 查询数据
+        let noteTable = Table(noteTableName)
+        
+        var array = Array<NoteModel>()
+        
+        let groupName = Expression<String?>(noteColumnGroup)
+        
+        let sequences = try? sqlHandler?.prepare(noteTable.filter(groupName.like(groupNameParam)))
+        if sequences == nil {
+            return []
+        }
+        
+        for note in sequences! {
+            let noteId = Expression<Int64>(noteColumnId)
+            let group = Expression<String?>(noteColumnGroup)
+            let body = Expression<String?>(noteColumnBody)
+            let title = Expression<String?>(noteColumnTitle)
+            let time = Expression<String?>(noteColumnTime)
+            
+            let model = NoteModel()
+            
+            if let i = try? note.get(noteId) {
+                model.noteId = Int(i)
+            }
+            if let g = try? note.get(group) {
+                model.group = g
+            }
+            if let b = try? note.get(body) {
+                model.body = b
+            }
+            if let t = try? note.get(title) {
+                model.title = t
+            }
+            if let t = try? note.get(time) {
+                model.time = t
+            }
+            
+            array.append(model)
+        }
+        return array
+    }
+    
     // 打开数据库
     static func openDataBase() {
         // 沙盒路径
@@ -71,16 +146,35 @@ class DataManager: NSObject {
         let file = path + "/DataBase.sqlite"
         // 打开数据库，不存在就创建
         sqlHandler = try? Connection(file)
-        // 创建表
+        // 创建分组表
         let groupTable = Table(groupTableName)
         let id = Expression<Int64>(groupColumnId)
         let name = Expression<String?>(groupColumnName)
         // 建表
-        // CREATE TABLE "group" ("id" INTEGER PRIMARY KEY NOT NULL, "name" TEXT)
+        // CREATE TABLE "GroupTable" ("id" INTEGER PRIMARY KEY NOT NULL, "name" TEXT)
         let _ = try? sqlHandler?.run(groupTable.create(block: { table in
             table.column(id, primaryKey: true)
             table.column(name)
         }))
+        
+        // 创建记事表
+        let noteTable = Table(noteTableName)
+        let noteId = Expression<Int64>(noteColumnId)
+        let group = Expression<String?>(noteColumnGroup)
+        let body = Expression<String?>(noteColumnBody)
+        let title = Expression<String?>(noteColumnTitle)
+        let time = Expression<String?>(noteColumnTime)
+        
+        // 建表
+        // CREATE TABLE "NoteTable" ("id" INTEGER PRIMARY KEY NOT NULL, "group" TEXT, "body" TEXT, "title" TEXT, "time" TEXT)
+        let _ = try? sqlHandler?.run(noteTable.create(block: { table in
+            table.column(noteId, primaryKey: true)
+            table.column(group)
+            table.column(body)
+            table.column(title)
+            table.column(time)
+        }))
+        
         // 重置数据库打开标志
         isDbOpen = true
     }

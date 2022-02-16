@@ -42,12 +42,12 @@ class GroupListView: UIScrollView {
                 // 计算按钮位置
                 btn.frame = CGRect(x: CGFloat(interitemSpacing) + CGFloat(index % 3) * (itemWidth + CGFloat(interitemSpacing)), y: CGFloat(lineSpacing) + CGFloat(index / 3) * (itemHeight + CGFloat(lineSpacing)), width: itemWidth, height: itemHeight)
                 
-                btn.backgroundColor = UIColor(red: 1, green: 245 / 255.0, blue: 215 / 255.0, alpha: 1)
+                btn.backgroundColor = UIColor.colorWithHexString(hex: "#FDEDEC")
                 
                 // 设置圆角
                 btn.layer.masksToBounds = true
                 btn.layer.cornerRadius = 16
-                btn.setTitleColor(UIColor.gray, for: .normal)
+                btn.setTitleColor(UIColor.darkGray, for: .normal)
                 btn.tag = index
                 btn.addTarget(self, action: #selector(onBtnClick), for: .touchUpInside)
                 self.addSubview(btn)
