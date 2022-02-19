@@ -138,6 +138,73 @@ class DataManager: NSObject {
         return array
     }
     
+    // 更新记事
+    class func updateNote(note: NoteModel) {
+        if !isDbOpen {
+            self.openDataBase()
+        }
+        
+        let noteTable = Table(noteTableName)
+        
+        let noteId = Expression<Int64>(noteColumnId)
+        let query = noteTable.filter(noteId == Int64(note.noteId!))
+        
+        let group = Expression<String?>(noteColumnGroup)
+        let body = Expression<String?>(noteColumnBody)
+        let title = Expression<String?>(noteColumnTitle)
+        let time = Expression<String?>(noteColumnTime)
+        
+        if let rows = try? sqlHandler?.run(query.update(group <- note.group, body <- note.body, title <- note.body, time <- note.time)) {
+            print("update note success, rows: ", rows)
+        } else {
+            print("update note failed")
+        }
+            
+    }
+    
+    // 删除记事
+    class func deleteNote(note: NoteModel) {
+        if !isDbOpen {
+            self.openDataBase()
+        }
+        
+        let noteTable = Table(noteTableName)
+        
+        let noteId = Expression<Int64>(noteColumnId)
+        let query = noteTable.filter(noteId == Int64(note.noteId!))
+      
+        if let rows = try? sqlHandler?.run(query.delete()) {
+            print("delete note success, rows: ", rows)
+        } else {
+            print("delete note failed")
+        }
+    }
+    
+    // 删除某个分组及组中的所有记事
+    class func deleteGroup(name: String) {
+        if !isDbOpen {
+            self.openDataBase()
+        }
+        // 删除分组下的所有记事
+        let noteTable = Table(noteTableName)
+        let group = Expression<String?>(noteColumnGroup)
+        let query = noteTable.filter(group == name)
+        if let rows = try? sqlHandler?.run(query.delete()) {
+            print("delete note success, rows: ", rows)
+        } else {
+            print("delete note failed")
+        }
+        // 再删除组
+        let groupTable = Table(groupTableName)
+        let groupName = Expression<String?>(groupColumnName)
+        let query2 = groupTable.filter(groupName == name)
+        if let rows = try? sqlHandler?.run(query2.delete()) {
+            print("delete group success, rows: ", rows)
+        } else {
+            print("delete group failed")
+        }
+    }
+    
     // 打开数据库
     static func openDataBase() {
         // 沙盒路径

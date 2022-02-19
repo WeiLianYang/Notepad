@@ -24,6 +24,7 @@ class NoteListViewController: UITableViewController {
         
         self.title = name
         
+        /*
         for _ in 0...20 {
             let model = NoteModel()
             model.time = "2022.2.14"
@@ -31,14 +32,25 @@ class NoteListViewController: UITableViewController {
             model.body = "gift list"
             list.append(model)
         }
+         */
+//        list = DataManager.getNoteByGroupName(groupNameParam: name ?? "")
         
         let addItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNote))
         let delItem = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(delNote))
         self.navigationItem.rightBarButtonItems = [addItem, delItem]
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        list = DataManager.getNoteByGroupName(groupNameParam: name ?? "")
+        self.tableView.reloadData()
+    }
+    
     @objc func addNote() {
-        
+        let vc = NoteDetailViewController()
+        vc.group = name!
+        vc.isAddNote = true
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     @objc func delNote() {
