@@ -27,13 +27,14 @@ class ViewController: UIViewController, GroupClickDelegate {
         
 //        groupView?.dataArray = ["生活", "工作", "逛街", "购物", "健身", "旅行", "聚会", "探亲", "访友", "学习", "比赛", "会议", "考试"]
         
-        groupArray = DataManager.getGroupList()
-        
-        groupView?.dataArray = groupArray
-        groupView?.updateLayout()
-        
         let barButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(createGroup))
         self.navigationItem.rightBarButtonItem = barButtonItem
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        groupArray = DataManager.getGroupList()
+        groupView?.dataArray = groupArray
+        groupView?.updateLayout()
     }
     
     @objc func createGroup() {

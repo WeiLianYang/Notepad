@@ -76,6 +76,11 @@ class NoteDetailViewController: UIViewController {
             maker.right.equalTo(-30)
             maker.bottom.equalTo(-50)
         })
+        
+        if !isAddNote {
+            titleTextField?.text = noteModel?.title
+            bodyTextView?.text = noteModel?.body
+        }
     }
     
     @objc func showKeyboard(notification: Notification) {
@@ -116,11 +121,32 @@ class NoteDetailViewController: UIViewController {
                 DataManager.addNote(note: noteModel!)
                 self.navigationController?.popViewController(animated: true)
             }
+        } else {
+            // 更新记事
+            if titleTextField?.text != nil && titleTextField!.text!.count > 0 {
+                noteModel?.title = titleTextField?.text
+                noteModel?.body = bodyTextView?.text
+                let formatter = DateFormatter()
+                formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+                noteModel?.time = formatter.string(from: Date())
+                DataManager.updateNote(note: noteModel!)
+                self.navigationController?.popViewController(animated: true)
+            }
         }
     }
 
     @objc func deleteNote() {
-        
+        let alertController = UIAlertController(title: "Warning", message: "Are you sure you want to delete this note?", preferredStyle: .alert)
+        let action1 = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let action2 = UIAlertAction(title: "Delete", style: .destructive, handler: { (UIAlertAction) in
+            if !self.isAddNote {
+                DataManager.deleteNote(note: self.noteModel!)
+                self.navigationController?.popViewController(animated: true)
+            }
+        })
+        alertController.addAction(action1)
+        alertController.addAction(action2)
+        self.present(alertController, animated: true, completion: nil)
     }
     
     // 当点击屏幕非文本区域时，收起键盘

@@ -36,7 +36,7 @@ class NoteListViewController: UITableViewController {
 //        list = DataManager.getNoteByGroupName(groupNameParam: name ?? "")
         
         let addItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNote))
-        let delItem = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(delNote))
+        let delItem = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(deleteGroup))
         self.navigationItem.rightBarButtonItems = [addItem, delItem]
     }
     
@@ -53,8 +53,16 @@ class NoteListViewController: UITableViewController {
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
-    @objc func delNote() {
-        
+    @objc func deleteGroup() {
+        let alertController = UIAlertController(title: "Warning", message: "Are you sure you want to delete this group and all notes in it?", preferredStyle: .alert)
+        let action1 = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let action2 = UIAlertAction(title: "Delete", style: .destructive, handler: { (UIAlertAction) in
+            DataManager.deleteGroup(name: self.name!)
+            self.navigationController?.popViewController(animated: true)
+        })
+        alertController.addAction(action1)
+        alertController.addAction(action2)
+        self.present(alertController, animated: true, completion: nil)
     }
 
     // MARK: - Table view data source
@@ -84,6 +92,15 @@ class NoteListViewController: UITableViewController {
         return cell!
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // 取消选中 cell 的选中状态
+        tableView.deselectRow(at: indexPath, animated: true)
+        let detailVC = NoteDetailViewController()
+        detailVC.group = name!
+        detailVC.isAddNote = false
+        detailVC.noteModel = list[indexPath.row]
+        self.navigationController?.pushViewController(detailVC, animated: true)
+    }
 
     /*
     // Override to support conditional editing of the table view.

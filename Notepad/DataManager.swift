@@ -154,7 +154,7 @@ class DataManager: NSObject {
         let title = Expression<String?>(noteColumnTitle)
         let time = Expression<String?>(noteColumnTime)
         
-        if let rows = try? sqlHandler?.run(query.update(group <- note.group, body <- note.body, title <- note.body, time <- note.time)) {
+        if let rows = try? sqlHandler?.run(query.update(group <- note.group, body <- note.body, title <- note.title, time <- note.time)) {
             print("update note success, rows: ", rows)
         } else {
             print("update note failed")
