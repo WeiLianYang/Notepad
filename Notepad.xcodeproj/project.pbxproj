@@ -24,6 +24,7 @@
 		68CEA51D27B7EB1900A9A970 /* GroupListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68CEA51C27B7EB1900A9A970 /* GroupListView.swift */; };
 		68D39DAE27BBD3B8004C9816 /* UIColorExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D39DAD27BBD3B8004C9816 /* UIColorExt.swift */; };
 		68D39DB027BBDE1B004C9816 /* MyNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D39DAF27BBDE1B004C9816 /* MyNavigationController.swift */; };
+		68E19D1827C2719A008370E7 /* notepad.gif in Resources */ = {isa = PBXBuildFile; fileRef = 68E19D1727C2719A008370E7 /* notepad.gif */; };
 		A49AD128EC08CF755832F589 /* Pods_Notepad.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C9BCFFA3E3093055733D5A5 /* Pods_Notepad.framework */; };
 /* End PBXBuildFile section */
 
@@ -66,6 +67,7 @@
 		68CEA51C27B7EB1900A9A970 /* GroupListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListView.swift; sourceTree = "<group>"; };
 		68D39DAD27BBD3B8004C9816 /* UIColorExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExt.swift; sourceTree = "<group>"; };
 		68D39DAF27BBDE1B004C9816 /* MyNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyNavigationController.swift; sourceTree = "<group>"; };
+		68E19D1727C2719A008370E7 /* notepad.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = notepad.gif; sourceTree = "<group>"; };
 		7AE0D622043143A6FC49D5CD /* Pods-Notepad.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Notepad.debug.xcconfig"; path = "Target Support Files/Pods-Notepad/Pods-Notepad.debug.xcconfig"; sourceTree = "<group>"; };
 		8C9BCFFA3E3093055733D5A5 /* Pods_Notepad.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Notepad.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACEA4DE48D143669DE3BB491 /* Pods-Notepad.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Notepad.release.xcconfig"; path = "Target Support Files/Pods-Notepad/Pods-Notepad.release.xcconfig"; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 				687362BE27B152D7003D1D8B /* ViewController.swift */,
 				68CEA51C27B7EB1900A9A970 /* GroupListView.swift */,
 				687362C027B152D7003D1D8B /* Main.storyboard */,
+				68E19D1727C2719A008370E7 /* notepad.gif */,
 				687362C627B152D9003D1D8B /* Assets.xcassets */,
 				687362C827B152D9003D1D8B /* LaunchScreen.storyboard */,
 				687362CB27B152D9003D1D8B /* Info.plist */,
@@ -283,6 +286,7 @@
 			files = (
 				687362CA27B152D9003D1D8B /* LaunchScreen.storyboard in Resources */,
 				687362C727B152D9003D1D8B /* Assets.xcassets in Resources */,
+				68E19D1827C2719A008370E7 /* notepad.gif in Resources */,
 				687362C227B152D7003D1D8B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
